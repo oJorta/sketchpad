@@ -3,7 +3,6 @@ const buttonSetCanvas = document.querySelector('#setCanvasSize')
 const colorInput = document.querySelector('#colorInput')
 const eraserButton = document.querySelector('#eraser')
 const clearButton = document.querySelector('#clear')
-const colorModes = document.getElementsByName('colorMode')
 const colorForm = document.getElementById('colorModes')
 /* const dimension = 4 */
 /* setCanvas(dimension) */
@@ -32,11 +31,18 @@ clearButton.addEventListener('click', () =>{
     clearCanvas()
 })
 
-canvas.addEventListener('mouseover', (e) =>{
+canvas.addEventListener('click', (e) =>{
     if(canvas.hasChildNodes()){
         paintCanvas(e.target, selectedColor, selectedMode)
     }
 })
+
+canvas.addEventListener('mousemove', (e) =>{
+    if(canvas.hasChildNodes() && e.buttons === 1){
+        paintCanvas(e.target, selectedColor, selectedMode)
+    }
+})
+
 
 function getUserInput(){
     let canvasDimension
@@ -67,6 +73,7 @@ function setCanvas(dimension){
     for(let i = 0; i<canvasSquareCount; i++){
         let div = document.createElement('div')
         div.classList.add('canvasSquare')
+        /* div.setAttribute('draggable', 'false') */
         div.style.cssText += `width: ${squareDimension}rem; height: ${squareDimension}rem;`
         canvas.appendChild(div)
     }
@@ -81,6 +88,10 @@ function setColor(colorCode){
 }
 
 function paintCanvas(target, color, mode){
+    if(target.id === 'canvas'){
+        return
+    }
+    
     switch(mode){
         case 'basicMode':
             target.style.backgroundColor = `${color}`
@@ -96,14 +107,6 @@ function paintCanvas(target, color, mode){
             console.log('default')
             break
     }
-    /* if(!selectedMode){
-        selectedMode = defaultMode
-    }
-    if(selectedMode === 'basicMode'){
-        target.style.backgroundColor = `${color}`
-    }
-    if(selectedMode ) */
-
 }
 
 function clearCanvas(){

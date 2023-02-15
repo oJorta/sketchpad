@@ -45,6 +45,7 @@ body{
 }
 
 .canvasSquare{
+    user-select: none;
 }
 
 #canvasAndOptions{
