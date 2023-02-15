@@ -1,22 +1,40 @@
 const canvas = document.querySelector('#canvas')
 const buttonSetCanvas = document.querySelector('#setCanvasSize')
 const colorInput = document.querySelector('#colorInput')
+const eraserButton = document.querySelector('#eraser')
+const clearButton = document.querySelector('#clear')
+const colorModes = document.getElementsByName('colorMode')
+const colorForm = document.getElementById('colorModes')
 /* const dimension = 4 */
-/* fillCanvas(dimension) */
+/* setCanvas(dimension) */
 let selectedColor = colorInput.value
+let defaultColor = '#232323'
+let selectedMode = 'basicMode'
 
-colorInput.addEventListener('change', () =>{
-    selectedColor = colorInput.value
+colorForm.addEventListener('change', (evt) =>{
+    selectedMode = evt.target.id
 })
 
 buttonSetCanvas.addEventListener('click', () =>{
     const canvasDimension = getUserInput()
-    fillCanvas(canvasDimension)
+    setCanvas(canvasDimension)
+})
+
+colorInput.addEventListener('change', () =>{
+    setColor(colorInput.value)
+})
+
+eraserButton.addEventListener('click', () =>{
+    setColor(defaultColor)
+});
+
+clearButton.addEventListener('click', () =>{
+    clearCanvas()
 })
 
 canvas.addEventListener('mouseover', (e) =>{
     if(canvas.hasChildNodes()){
-        paintCanvas(e.target)
+        paintCanvas(e.target, selectedColor, selectedMode)
     }
 })
 
@@ -37,7 +55,7 @@ function getUserInput(){
     return canvasDimension.valueOf()
 }
 
-function fillCanvas(dimension){
+function setCanvas(dimension){
     canvas.replaceChildren()
     let canvasSquareCount = dimension*dimension
     let squareDimension = (57.6/dimension)
@@ -54,6 +72,45 @@ function fillCanvas(dimension){
     }
 }
 
-function paintCanvas(target){
-    target.style.backgroundColor = `${selectedColor}`
+// redundant, but it was the only way i figured out
+// to change the color input value when the user clicks
+// the eraser button
+function setColor(colorCode){
+    colorInput.value = `${colorCode}`
+    selectedColor = colorInput.value
+}
+
+function paintCanvas(target, color, mode){
+    switch(mode){
+        case 'basicMode':
+            target.style.backgroundColor = `${color}`
+            break
+        case 'rainbowMode':
+            let randomColorCode = '#' + Math.floor(Math.random()*16777215).toString(16)
+            target.style.backgroundColor = `${randomColorCode}`
+            break
+        case 'clear':
+            target.style.backgroundColor = `${color}`
+            break
+        default:
+            console.log('default')
+            break
+    }
+    /* if(!selectedMode){
+        selectedMode = defaultMode
+    }
+    if(selectedMode === 'basicMode'){
+        target.style.backgroundColor = `${color}`
+    }
+    if(selectedMode ) */
+
+}
+
+function clearCanvas(){
+    let canvasSquares = document.querySelectorAll('.canvasSquare')
+
+    canvasSquares.forEach(square =>{
+        paintCanvas(square, defaultColor, 'clear')
+    })
+
 }

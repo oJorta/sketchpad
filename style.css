@@ -13,7 +13,7 @@
 body{
     width: 100vw;
     height: 100vh;
-    background-color: rgb(35, 35, 35);
+    background-color: #232323;
     color: #fff;
 }
 
@@ -53,19 +53,19 @@ body{
     gap: 6rem;
 }
 
-#setCanvasSize{
-    width: 15rem;
-    height: 4rem;
+button{
+    padding: .8rem 1.2rem;
     border-radius: 3rem;
     border: none;
     background-color: rgb(255, 255, 255);
     transition: 0.5s;
 }
 
-#setCanvasSize:hover{
-    background-color: rgb(198, 198, 198);
+button:hover{
+    background-color: #c6c6c6;
     transform: scale(1.05);
     transition: 0.5s;
+    cursor: pointer;
 }
 
 #options{
@@ -76,11 +76,21 @@ body{
     gap: 6rem;
 }
 
+#colorModeSelection{
+
+    font-size: 1.4rem;
+
+}
+
+#colorModes{
+    display: flex;
+    flex-direction: column;
+}
+
 #colorSelection{
     display: flex;
     align-items: center;
     gap: 1rem;
-
     font-size: 1.4rem;
 }
 
@@ -89,4 +99,28 @@ body{
     margin: 0;
     border: 0;
     appearance: none;
+}
+
+#clearOptions{
+    display: flex;
+    gap: 1.5rem;
+}
+
+#clear:hover{
+    background-color: rgba(255, 0, 0, 0.715);
+    color: white;
+}
+
+footer{
+    width: 100vw;
+    text-align: center;
+    position: fixed;
+    bottom: 10px;
+    color: rgba(255, 255, 255, 0.605);
+    font-weight: 400;
+}
+
+footer a{
+    text-decoration: none;
+    color: purple;
 }

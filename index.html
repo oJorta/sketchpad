@@ -16,15 +16,36 @@
         <div id="canvasAndOptions">
             <div id="options">
                 <button id="setCanvasSize">SET CANVAS SIZE</button>
+
+                <div id="colorModeSelection">
+                    <p>Select color mode:</p>
+                    <form id="colorModes">
+                        <div>
+                            <input type="radio" name="colorMode" id="basicMode" checked>
+                            <label for="basicMode">Basic</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="colorMode" id="rainbowMode">
+                            <label for="rainbowMode">Rainbow</label>
+                        </div>
+                    </form>
+                </div>
+
                 <div id="colorSelection">
                     <p>Select a color:</p>
                     <input type="color" name="colorInput" id="colorInput" value="#ffffff">
+                </div>
+                <div id="clearOptions">
+                    <button id="eraser">ERASER</button>
+                    <button id="clear">CLEAR CANVAS</button>
                 </div>
             </div>
             
             <div id="canvas"></div>
         </div>
     </div>
+
+    <footer>made with ❤️‍🔥 by <a href="https://github.com/oJorta" target="_blank">Jorta</a></footer>
 
     <script src="script.js"></script>
 </body>
