@@ -1,17 +1,31 @@
 const canvas = document.querySelector('#canvas')
 const buttonSetCanvas = document.querySelector('#setCanvasSize')
+const colorSelection = document.querySelector('#colorSelection')
 const colorInput = document.querySelector('#colorInput')
+const gridViewButton = document.querySelector('#toggleGridView')
 const eraserButton = document.querySelector('#eraser')
 const clearButton = document.querySelector('#clear')
-const colorForm = document.getElementById('colorModes')
+const colorModes = document.getElementById('colorModes')
 /* const dimension = 4 */
 /* setCanvas(dimension) */
 let selectedColor = colorInput.value
 let defaultColor = '#232323'
+let previousColor
 let selectedMode = 'basicMode'
+let eraserMode = false
 
-colorForm.addEventListener('change', (evt) =>{
+colorModes.addEventListener('change', (evt) =>{
     selectedMode = evt.target.id
+
+    if(eraserMode){
+        toggleEraser()
+    }
+
+    if(selectedMode === 'basicMode'){
+        colorSelection.style.cssText = 'display: flex;'
+    }else{
+        colorSelection.style.cssText = 'display: none;'
+    }
 })
 
 buttonSetCanvas.addEventListener('click', () =>{
@@ -23,8 +37,12 @@ colorInput.addEventListener('change', () =>{
     setColor(colorInput.value)
 })
 
+gridViewButton.addEventListener('click', () =>{
+    toggleSquareBorder()
+})
+
 eraserButton.addEventListener('click', () =>{
-    setColor(defaultColor)
+    toggleEraser()
 });
 
 clearButton.addEventListener('click', () =>{
@@ -33,15 +51,24 @@ clearButton.addEventListener('click', () =>{
 
 canvas.addEventListener('click', (e) =>{
     if(canvas.hasChildNodes()){
-        paintCanvas(e.target, selectedColor, selectedMode)
+        if(!eraserMode){
+            paintCanvas(e.target, selectedColor, selectedMode)
+        }else{
+            paintCanvas(e.target, selectedColor, 'erase')
+        }
     }
 })
 
-canvas.addEventListener('mousemove', (e) =>{
+canvas.addEventListener('mouseover', (e) =>{
     if(canvas.hasChildNodes() && e.buttons === 1){
-        paintCanvas(e.target, selectedColor, selectedMode)
+        if(!eraserMode){
+            paintCanvas(e.target, selectedColor, selectedMode)
+        }else{
+            paintCanvas(e.target, selectedColor, 'erase')
+        }
     }
 })
+
 
 
 function getUserInput(){
@@ -87,6 +114,27 @@ function setColor(colorCode){
     selectedColor = colorInput.value
 }
 
+function toggleEraser(){
+    if(!eraserMode){
+        eraserMode = !eraserMode
+        previousColor = selectedColor
+        colorInput.disabled = true
+        setColor(defaultColor)
+    }else{
+        eraserMode = !eraserMode
+        colorInput.disabled = false
+        setColor(previousColor)
+    }
+
+    eraserButton.classList.toggle('buttonToggle')
+}
+
+function toggleSquareBorder(){
+    canvas.childNodes.forEach(square =>{
+        square.classList.toggle('border')
+    })
+}
+
 function paintCanvas(target, color, mode){
     if(target.id === 'canvas'){
         return
@@ -100,7 +148,7 @@ function paintCanvas(target, color, mode){
             let randomColorCode = '#' + Math.floor(Math.random()*16777215).toString(16)
             target.style.backgroundColor = `${randomColorCode}`
             break
-        case 'clear':
+        case 'erase':
             target.style.backgroundColor = `${color}`
             break
         default:
@@ -113,7 +161,7 @@ function clearCanvas(){
     let canvasSquares = document.querySelectorAll('.canvasSquare')
 
     canvasSquares.forEach(square =>{
-        paintCanvas(square, defaultColor, 'clear')
+        paintCanvas(square, defaultColor, 'erase')
     })
 
 }

@@ -41,7 +41,6 @@ body{
 
     /* border: 1px solid red; */
     box-shadow: .0rem .0rem .6rem .5rem rgba(0, 0, 0, 0.15);
-    ;
 }
 
 .canvasSquare{
@@ -69,18 +68,27 @@ button:hover{
     cursor: pointer;
 }
 
+.buttonToggle{
+    background-color: rgba(255, 0, 0, 0.715);;
+    color: #fff;
+    border: 1px solid white;
+}
+
 #options{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6rem;
+
+    padding: 1.5rem 3.5rem;
+    border-radius: .5rem;
+    
+    box-shadow: .0rem .0rem .6rem .5rem rgba(0, 0, 0, 0.15);
 }
 
 #colorModeSelection{
-
     font-size: 1.4rem;
-
 }
 
 #colorModes{
@@ -109,7 +117,11 @@ button:hover{
 
 #clear:hover{
     background-color: rgba(255, 0, 0, 0.715);
-    color: white;
+    color: #fff;
+}
+
+.border{
+    border: .1rem solid #ffffff4e;
 }
 
 footer{
