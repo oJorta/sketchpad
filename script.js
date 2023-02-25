@@ -91,17 +91,15 @@ function getUserInput(){
 function setCanvas(dimension){
     canvas.replaceChildren()
     let canvasSquareCount = dimension*dimension
-    let squareDimension = (57.6/dimension)
-    console.log(squareDimension)
 
-    canvas.style.cssText = `grid-template-columns: repeat(${dimension}, ${squareDimension}rem);
-    grid-template-rows: repeat(${dimension}, ${squareDimension}rem);`
+    canvas.style.cssText = `grid-template-columns: repeat(${dimension}, 1fr);
+    grid-template-rows: repeat(${dimension}, 1fr);`
 
     for(let i = 0; i<canvasSquareCount; i++){
         let div = document.createElement('div')
         div.classList.add('canvasSquare')
         /* div.setAttribute('draggable', 'false') */
-        div.style.cssText += `width: ${squareDimension}rem; height: ${squareDimension}rem;`
+        /* div.style.cssText += `width: 100%; height: 100%;` */
         canvas.appendChild(div)
     }
 }

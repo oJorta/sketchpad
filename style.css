@@ -11,8 +11,7 @@
 }
 
 body{
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
     background-color: #232323;
     color: #fff;
 }
@@ -23,8 +22,6 @@ body{
     justify-content: center;
     align-items: center;
     gap: 3.2rem;
-    width: 100%;
-    height: 100%;
 }
 
 #app > h1{
@@ -50,6 +47,7 @@ body{
 #canvasAndOptions{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     gap: 6rem;
 }
 
@@ -79,9 +77,9 @@ button:hover{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6rem;
+    gap: 4rem;
 
-    padding: 1.5rem 3.5rem;
+    padding: 6rem 4.5rem;
     border-radius: .5rem;
     
     box-shadow: .0rem .0rem .6rem .5rem rgba(0, 0, 0, 0.15);
@@ -137,3 +135,39 @@ footer a{
     text-decoration: none;
     color: purple;
 }
+
+@media only screen and (max-width: 966px) {
+    #canvas{
+        width: 37.6rem;
+        height: 37.6rem;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    #canvas{
+        width: 27.6rem;
+        height: 27.6rem;
+    }
+
+    #options{
+        padding: 3rem 3.6rem;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #canvasAndOptions{
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    #canvas{
+        width: 27.6rem;
+        height: 27.6rem;
+    }
+
+    #options{
+        padding: 3rem 3.6rem;
+    }
+}
+
