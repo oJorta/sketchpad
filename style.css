@@ -11,21 +11,23 @@
 }
 
 body{
+    margin-bottom: 5rem;
     /* width: 100vw; */
     background-color: #232323;
     color: #fff;
 }
 
-#app{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3.2rem;
+header{
+    width: 100%;
+    padding: 3rem;
+    text-align: center;
 }
 
-#app > h1{
+header h1{
     font-size: 3.2rem;
+}
+
+main{
 }
 
 #canvas{
@@ -33,8 +35,8 @@ body{
     justify-content: center;
     align-content: center;
 
-    width: 57.6rem;
-    height: 57.6rem;
+    width: 50rem;
+    height: 50rem;
 
     /* border: 1px solid red; */
     box-shadow: .0rem .0rem .6rem .5rem rgba(0, 0, 0, 0.15);
@@ -46,9 +48,9 @@ body{
 
 #canvasAndOptions{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 6rem;
+    gap: 5rem;
 }
 
 button{
@@ -123,30 +125,37 @@ button:hover{
 }
 
 footer{
-    width: 100vw;
-    text-align: center;
-    position: fixed;
-    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+
+    padding: 1rem;
+    gap: 1rem;
     color: rgba(255, 255, 255, 0.605);
-    font-weight: 400;
+    font-size: 1.6rem;
 }
 
 footer a{
     text-decoration: none;
-    color: purple;
+    color: rgb(183, 8, 183);
 }
 
-@media only screen and (max-width: 966px) {
+
+@media only screen and (max-width: 950px) {
     #canvas{
-        width: 37.6rem;
-        height: 37.6rem;
+        width: 40rem;
+        height: 40rem;
     }
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 800px) {
     #canvas{
-        width: 27.6rem;
-        height: 27.6rem;
+        width: 35rem;
+        height: 35rem;
     }
 
     #options{
@@ -154,20 +163,25 @@ footer a{
     }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 730px) {
     #canvasAndOptions{
         flex-direction: column-reverse;
         align-items: center;
         gap: 2rem;
     }
 
-    #canvas{
-        width: 27.6rem;
-        height: 27.6rem;
-    }
-
     #options{
-        padding: 3rem 3.6rem;
+        padding: 3rem 7rem;
     }
 }
 
+@media only screen and (max-width: 520px) {
+    #canvas{
+        width: 30rem;
+        height: 30rem;
+    }
+
+    #options{
+        padding: 3rem 4.6rem;
+    }
+}
