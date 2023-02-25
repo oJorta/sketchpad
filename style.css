@@ -11,8 +11,8 @@
 }
 
 body{
-    margin-bottom: 5rem;
-    /* width: 100vw; */
+    position: relative;
+    min-height: 100vh;
     background-color: #232323;
     color: #fff;
 }
@@ -28,6 +28,7 @@ header h1{
 }
 
 main{
+    padding-bottom: 5rem;
 }
 
 #canvas{
@@ -129,7 +130,6 @@ footer{
     justify-content: center;
     align-items: baseline;
     width: 100%;
-
     position: absolute;
     bottom: 0;
 
